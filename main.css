@@ -1,0 +1,424 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+@font-face {
+  font-family: gowFont;
+  src: url(LocustResistance.ttf);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body,
+h1,
+h2,
+p,
+picture {
+  margin: 0;
+}
+:root {
+  --main-bkg: rgb(34, 34, 34);
+  --tile-bkg: rgb(49, 49, 49);
+  --title: rgb(206, 117, 34);
+  --text: rgba(255, 255, 255, 0.8);
+  --text-shd: 2px 2px 2px rgba(0, 0, 0, 0.75);
+  --tile-brd: inset 0px 0px 0px 1px rgba(216, 179, 145, 0.6);
+}
+::-webkit-scrollbar {
+  width: 0;
+}
+body {
+  position: relative;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: var(--text-shd);
+  color: var(--text);
+  font-size: 1.2rem;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.container {
+  max-width: 60rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--main-bkg);
+  background-image: url(images/bkgMiddle.jpg);
+  background-size: clamp(40rem, 75vw, 60rem);
+}
+/***   HEADER   ***/
+header {
+  z-index: 3;
+  background-image: url(images/bkgUp.jpg);
+  background-repeat: repeat-x;
+  width: 100vw;
+  height: 6rem;
+  background-size: contain;
+  position: fixed;
+  top: 0;
+  box-shadow: 0px 10px 35px 0px rgba(0, 0, 0, 0.75);
+}
+h1 {
+  font-family: gowFont;
+  letter-spacing: 3px;
+  word-spacing: 6px;
+  font-size: min(5vw, 3rem);
+  color: rgb(209, 133, 71);
+  margin: 1.5rem 0;
+  text-shadow: 2px 2px 10px black;
+  animation-name: headerGlow;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+@keyframes headerGlow {
+  from {
+    color: rgb(209, 133, 71);
+  }
+  to {
+    color: rgb(255, 255, 255);
+  }
+}
+/***   COMPLETE SCREEN   ***/
+.complete {
+  font-size: min(6vw, 2.5rem);
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-content: center;
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  transition: opacity 1s;
+  display: none;
+}
+.start {
+  font-size: min(10vw, 4rem);
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  transition: opacity 1s;
+  cursor: pointer;
+}
+.complete:hover {
+  cursor: pointer;
+}
+/***   IMAGES LIST   ***/
+.goBack {
+  position: fixed;
+  z-index: 4;
+  left: 0.6rem;
+  top: 8rem;
+  border: 2px solid rgb(179, 147, 122);
+  background-color: rgb(105, 84, 59);
+  border-radius: 5rem;
+  padding-bottom: 2px;
+  padding-right: 2px;
+  transition: all 0.2s;
+}
+.goBack:hover {
+  cursor: pointer;
+  color: white;
+  border-color: white;
+}
+.imgList {
+  position: absolute;
+  background-color: rgb(44, 44, 49);
+  background-image: url(images/fabric10.png);
+  background-repeat: repeat;
+  display: none;
+  opacity: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 1.5rem;
+  z-index: 2;
+  overflow: auto;
+  padding: 8rem 1rem 4rem 1rem;
+  transition: all 1s;
+}
+.imgList img {
+  max-width: 10rem;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s;
+}
+.thumb {
+  position: relative;
+  transition: all 0.3s;
+}
+.icon-ok {
+  display: none;
+  font-size: 2rem;
+  text-shadow: 2px 2px 5px black;
+  color: rgb(0, 192, 26);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  justify-content: right;
+  align-items: end;
+  padding: 10px 3px;
+  z-index: 2;
+}
+.thumbMoves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0 0 12px 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2px 8px 3px 8px;
+  border-radius: 10px;
+}
+.thumb:hover {
+  filter: brightness(1.2);
+  cursor: pointer;
+  scale: 1.1;
+  rotate: 3deg;
+}
+
+/***   NAV  ***/
+nav {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 1.5rem;
+}
+.movesCounter {
+  margin-left: -2rem;
+}
+.templateBtn {
+  justify-self: center;
+  width: 1rem;
+}
+.templateBtn:hover,
+.restartBtn:hover {
+  color: rgb(212, 129, 21);
+}
+.templateBtn,
+.restartBtn,
+.imagesBtn {
+  transition: all 0.2s;
+  cursor: pointer;
+}
+i {
+  font-size: 1.5rem;
+}
+.templateBtn i {
+  font-size: 2rem;
+}
+.imagesBtn {
+  background-color: rgb(105, 84, 59);
+  border: 2px solid rgb(179, 147, 122);
+  padding: 1px 8px 3px 8px;
+  border-radius: 0.6rem;
+}
+.imagesBtn:hover {
+  cursor: pointer;
+  color: white;
+  border-color: white;
+}
+/***   MAIN  ***/
+main {
+  display: grid;
+  position: fixed;
+  gap: 1rem;
+  margin-top: 8rem;
+  max-width: 600px;
+  width: 100%;
+}
+.tilesContainer {
+  border: 2rem solid #383838;
+  border-image: url(images/frame.jpg) 8% round;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  aspect-ratio: 1;
+  position: relative;
+  margin: 0 1.5rem;
+  background-color: var(--tile-bkg);
+  box-shadow: 7px 7px 30px 5px rgba(0, 0, 0, 0.75), var(--tile-brd);
+  border-radius: 20px
+}
+.mainImage {
+  background-image: url(images/full-res/img0.jpg);
+  background-size: contain;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(1);
+  opacity: 1;
+  transition: opacity 1s;
+  z-index: 1;
+}
+.mainImage:hover {
+  cursor: pointer;
+}
+.tile {
+  position: absolute;
+  display: grid;
+  place-content: center;
+  font-size: 3rem;
+  font-size: 0;
+  text-shadow: 0 0 1rem black;
+  background-image: url(images/full-res/img0.jpg);
+  background-size: contain;
+  background-size: 400%;
+  width: 25%;
+  height: 25%;
+  transition: top 0.2s, left 0.2s, box-shadow 2s, opacity 2s, filter 0.5s;
+}
+.border {
+  box-shadow: var(--tile-brd);
+}
+#t1 {
+  background-position: 0 0;
+}
+#t2 {
+  background-position: 33.3% 0;
+}
+#t3 {
+  background-position: 66.6% 0;
+}
+#t4 {
+  background-position: 100% 0%;
+}
+#t5 {
+  background-position: 0% 33.3%;
+}
+#t6 {
+  background-position: 33.3% 33.3%;
+}
+#t7 {
+  background-position: 66.6% 33.3%;
+}
+#t8 {
+  background-position: 100% 33.3%;
+}
+#t9 {
+  background-position: 0% 66.6%;
+}
+#t10 {
+  background-position: 33.3% 66.6%;
+}
+#t11 {
+  background-position: 66.6% 66.6%;
+}
+#t12 {
+  background-position: 100% 66.6%;
+}
+#t13 {
+  background-position: 0% 100%;
+}
+#t14 {
+  background-position: 33.3% 100%;
+}
+#t15 {
+  background-position: 66.6% 100%;
+}
+#t16 {
+  background-position: 100% 100%;
+}
+.hide {
+  opacity: 0%;
+  box-shadow: none;
+}
+.tile:hover {
+  cursor: pointer;
+}
+.tile:last-child:hover {
+  cursor: default;
+}
+
+/***   FOOTER   ***/
+footer {
+  font-size: 0.9rem;
+  text-transform: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  bottom: 0px;
+  background-image: url(images/bkgDown.jpg);
+  background-repeat: repeat-x;
+  background-size: contain;
+  width: 100vw;
+  height: 2rem;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0px -10px 35px 0px rgba(0, 0, 0, 0.75);
+}
+.copyR {
+  font-size: 1.3rem;
+  padding: 0 6px 4px 6px;
+}
+/***   MEDIA QUERY   ***/
+@media screen and (max-width: 780px) {
+  header {
+    background-size: cover;
+    height: max(4rem, 15vw);
+  }
+}
+@media screen and (max-width: 550px) {
+  footer {
+    background-size: cover;
+  }
+}
+@media screen and (max-width: 450px) {
+  .border {
+    box-shadow: var(--tile-brd);
+  }
+  .tilesContainer {
+    border: 1rem solid rgb(146, 126, 101);
+    border-image: url(images/frame.jpg) 7% round;
+  }
+  .imgList {
+    padding-top: 6rem;
+  }
+  .imgList img {
+    max-width: 8rem;
+  }
+  main {
+    margin-top: 9rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  i {
+    font-size: 1rem;
+  }
+  footer {
+    font-size: 0.7rem;
+  }
+}
+@media screen and (max-width: 320px) {
+  .templateBtn {
+    position: static;
+    right: 4rem;
+  }
+  body {
+    font-size: 0.8rem;
+  }
+}
