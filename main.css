@@ -93,6 +93,10 @@ h1 {
     color: rgb(255, 255, 255);
   }
 }
+
+#header span:hover {
+      cursor: pointer;
+    }
 /***   COMPLETE SCREEN   ***/
 .complete {
   font-size: min(6vw, 2.5rem);
@@ -132,7 +136,7 @@ h1 {
   top: 8rem;
   border: 2px solid rgb(179, 147, 122);
   background-color: rgb(105, 84, 59);
-  border-radius: 5rem;
+  border-radius: 0;
   padding-bottom: 2px;
   padding-right: 2px;
   transition: all 0.2s;
@@ -161,7 +165,7 @@ h1 {
 .imgList img {
   max-width: 10rem;
   height: auto;
-  border-radius: 1rem;
+  border-radius: 0;
   box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.6);
   transition: all 0.3s;
 }
@@ -189,7 +193,7 @@ h1 {
   margin: 0 0 12px 12px;
   background-color: rgba(0, 0, 0, 0.6);
   padding: 2px 8px 3px 8px;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 .thumb:hover {
   filter: brightness(1.2);
@@ -234,7 +238,7 @@ i {
   background-color: rgb(105, 84, 59);
   border: 2px solid rgb(179, 147, 122);
   padding: 1px 8px 3px 8px;
-  border-radius: 0.6rem;
+  border-radius: 0;
 }
 .imagesBtn:hover {
   cursor: pointer;
@@ -251,7 +255,7 @@ main {
   width: 100%;
 }
 .tilesContainer {
-  border: 2rem solid #383838;
+  border: 2rem solid rgb(146, 126, 101);
   border-image: url(images/frame.jpg) 8% round;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -260,7 +264,6 @@ main {
   margin: 0 1.5rem;
   background-color: var(--tile-bkg);
   box-shadow: 7px 7px 30px 5px rgba(0, 0, 0, 0.75), var(--tile-brd);
-  border-radius: 20px
 }
 .mainImage {
   background-image: url(images/full-res/img0.jpg);
@@ -352,6 +355,10 @@ main {
   cursor: default;
 }
 
+#main-content {
+      display: none;
+    }
+
 /***   FOOTER   ***/
 footer {
   font-size: 0.9rem;
@@ -421,4 +428,12 @@ footer {
   body {
     font-size: 0.8rem;
   }
+}
+
+.tilesContainer {
+    margin: 20px;
+}
+
+.icon-left.goBack {
+    display: none;
 }
